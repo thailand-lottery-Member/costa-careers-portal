@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers Portal | Find Your Future</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #203047;
+      background: #f5f7fb;
+    }
+    header {
+      background: #123b32;
+      color: white;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo { font-size: 23px; font-weight: bold; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+    }
+    .hero {
+      background: linear-gradient(120deg, #123b32, #26745b);
+      color: white;
+      padding: 75px 7%;
+      text-align: center;
+    }
+    .hero h1 { font-size: clamp(30px, 5vw, 48px); margin: 0 0 15px; }
+    .hero p { line-height: 1.7; }
+    .search {
+      max-width: 650px;
+      margin: 25px auto 0;
+      display: flex;
+      gap: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d5dce5;
+      border-radius: 6px;
+      font: inherit;
+      background: white;
+    }
+    button, .apply {
+      background: #e7b84b;
+      color: #18372e;
+      border: 0;
+      border-radius: 6px;
+      padding: 13px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    main { padding: 40px 7%; }
+    h2 { margin-bottom: 10px; }
+    .muted { color: #68778a; line-height: 1.6; }
+    .jobs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin: 25px 0 45px;
+    }
+    .card, .application {
+      background: white;
+      border: 1px solid #e3e8ef;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 5px 18px #172b3d0a;
+    }
+    .tag {
+      display: inline-block;
+      background: #e8f4ee;
+      color: #236449;
+      border-radius: 20px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .application { max-width: 720px; margin: 25px auto; }
+    .field { margin: 16px 0; }
+    label { display: block; margin-bottom: 7px; font-weight: bold; }
+    .notice {
+      background: #fff8e5;
+      border-left: 4px solid #e7b84b;
+      padding: 14px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    footer {
+      background: #123b32;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      line-height: 1.7;
+    }
+    @media (max-width: 600px) {
+      header { padding: 18px 5%; }
+      nav a { margin: 0 10px 0 0; }
+      .hero { padding: 55px 5%; }
+      .search { flex-direction: column; }
+      main { padding: 30px 5%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">CAREERS PORTAL</div>
+    <nav>
+      <a href="#jobs">Jobs</a>
+      <a href="#about">About</a>
+      <a href="#apply">Apply Now</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Build Your Future With Us</h1>
+    <p>Discover career opportunities and take the next step in your professional journey.</p>
+    <div class="search">
+      <input id="jobSearch" type="search"
+        placeholder="Search jobs or locations...">
+      <button onclick="searchJobs()">Search Jobs</button>
+    </div>
+  </section>
+
+  <main>
+    <section id="jobs">
+      <h2>Latest Job Opportunities</h2>
+      <p class="muted">Explore opportunities that match your skills and ambitions.</p>
+
+      <div class="jobs" id="jobList">
+        <article class="card" data-search="warehouse worker thailand">
+          <span class="tag">Full Time</span>
+          <h3>Warehouse Worker</h3>
+          <p class="muted">Location: Thailand</p>
+          <p>Assist with inventory, packing and daily warehouse operations.</p>
+          <a class="apply" href="#apply" onclick="chooseJob('Warehouse Worker')">Apply Now</a>
+        </article>
+
+        <article class="card" data-search="production operator factory">
+          <span class="tag">Full Time</span>
+          <h3>Production Operator</h3>
+          <p class="muted">Location: To be confirmed</p>
+          <p>Support production activities and follow workplace safety procedures.</p>
+          <a class="apply" href="#apply" onclick="chooseJob('Production Operator')">Apply Now</a>
+        </article>
+
+        <article class="card" data-search="office assistant administration">
+          <span class="tag">Full Time</span>
+          <h3>Office Assistant</h3>
+          <p class="muted">Location: To be confirmed</p>
+          <p>Help with office coordination, records and administrative tasks.</p>
+          <a class="apply" href="#apply" onclick="chooseJob('Office Assistant')">Apply Now</a>
+        </article>
+      </div>
+      <p id="noJobs" hidden>No matching jobs found.</p>
+    </section>
+
+    <section id="about">
+      <h2>About Our Careers Portal</h2>
+      <p class="muted">
+        We help candidates explore job opportunities and prepare applications.
+        Please verify each employer, vacancy and recruitment process before
+        submitting personal information or paying any fee.
+      </p>
+    </section>
+
+    <section id="apply">
+      <h2>Online Application</h2>
+      <p class="muted">Complete the form to prepare your application.</p>
+
+      <form class="application" onsubmit="submitApplication(event)">
+        <div class="notice">
+          This is a demonstration form. Your application will not be sent or
+          saved until a secure backend is connected.
+        </div>
+
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input id="fullName" name="fullName" required
+            autocomplete="name" placeholder="Enter your full name">
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" required
+            autocomplete="email" placeholder="you@example.com">
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" required
+            autocomplete="tel" placeholder="Enter your phone number">
+        </div>
+
+        <div class="field">
+          <label for="position">Position</label>
+          <select id="position" name="position" required>
+            <option value="">Select a position</option>
+            <option>Warehouse Worker</option>
+            <option>Production Operator</option>
+            <option>Office Assistant</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="cv">CV / Resume (PDF)</label>
+          <input id="cv" name="cv" type="file"
+            accept=".pdf,application/pdf">
+        </div>
+
+        <button type="submit">Submit Application</button>
+        <p id="formMessage" class="muted" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Careers Portal</strong>
+    <p>Career opportunities and candidate application information.</p>
+    <small>Independent demonstration website. Not an official employer website.</small>
+  </footer>
+
+  <script>
+    function searchJobs() {
+      const query = document.getElementById("jobSearch")
+        .value.toLowerCase().trim();
+      const cards = document.querySelectorAll("#jobList .card");
+      let visible = 0;
+
+      cards.forEach(card => {
+        const matches = card.innerText.toLowerCase().includes(query) ||
+          card.dataset.search.includes(query);
+        card.hidden = !matches;
+        if (matches) visible++;
+      });
+
+      document.getElementById("noJobs").hidden = visible !== 0;
+    }
+
+    function chooseJob(position) {
+      document.getElementById("position").value = position;
+    }
+
+    function submitApplication(event) {
+      event.preventDefault();
+      document.getElementById("formMessage").textContent =
+        "Demo only: your application has not been sent or saved. Website setup is still required.";
+    }
+  </script>
+</body>
+</html>
